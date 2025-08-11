@@ -1,33 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akash Kamboj | Portfolio</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash Kamboj - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
+
+<header>
     <nav>
-      <h1>Akash Kamboj</h1>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+        <h1>Akash Kamboj</h1>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
-  </header>
+</header>
 
-  <section class="hero">
-    <img src="assets/img/profile.jpg" alt="Akash Kamboj">
-    <h2>AWS Certified Solutions Architect & DevOps Engineer</h2>
-    <p>I design scalable cloud systems and build intelligent, automated solutions.</p>
-  </section>
+<!-- Hero -->
+<section id="home" class="hero fade-in">
+    <h2>Data & Cloud Enthusiast</h2>
+    <p>AWS | DevOps | Machine Learning | Data Analytics</p>
+    <a href="#contact" class="btn">Contact Me</a>
+</section>
 
-  <footer>
-    <p>© 2025 Akash Kamboj</p>
-  </footer>
+<!-- About -->
+<section id="about" class="glass fade-in">
+    <h2>About Me</h2>
+    <p>I am a Data and Cloud enthusiast with skills in Python, scikit-learn, and Power BI.
+        Proficient in AWS (EC2, S3, Lambda, RDS) and DevOps tools like Docker, Jenkins, Kubernetes, and Terraform.</p>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="glass fade-in">
+    <h2>Skills</h2>
+    <ul>
+        <li>Python, SQL, Power BI, HTML, CSS, JavaScript</li>
+        <li>Machine Learning, Data Visualization, MongoDB</li>
+        <li>AWS Services, Docker, Jenkins, Kubernetes, Terraform</li>
+    </ul>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="fade-in">
+    <h2>Projects</h2>
+    <div class="project-card">
+        <img src="https://via.placeholder.com/400x250" alt="HR Dashboard">
+        <h3>HR Dashboard in Power BI</h3>
+        <p>Designed an HR analytics dashboard tracking turnover, recruitment, diversity, and engagement.</p>
+    </div>
+    <div class="project-card">
+        <img src="https://via.placeholder.com/400x250" alt="Diamond Price Prediction">
+        <h3>Diamond Price Prediction</h3>
+        <p>ML web app using Flask to predict diamond prices with multiple regression models.</p>
+    </div>
+</section>
+
+<!-- Education -->
+<section id="education" class="glass fade-in">
+    <h2>Education</h2>
+    <p>B.Tech in Computer Science & Engineering - MIET Meerut (2021–2025) - CGPA: 6.7</p>
+    <p>Senior Secondary - Ved International School, Meerut (73%)</p>
+</section>
+
+<!-- Certifications -->
+<section id="certifications" class="glass fade-in">
+    <h2>Certifications</h2>
+    <p>AWS Academy Graduate - AWS Academy Cloud Foundations Badge</p>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="glass fade-in">
+    <h2>Contact Me</h2>
+    <p>Email: <a href="mailto:akashkamboj238@gmail.com">akashkamboj238@gmail.com</a></p>
+    <p>Phone: <a href="tel:+918755410664">+91 8755410664</a></p>
+    <p>GitHub: <a href="https://github.com/aakashkamboj" target="_blank">aakashkamboj</a></p>
+</section>
+
+<footer>
+    <p>© 2025 Akash Kamboj | Portfolio</p>
+</footer>
+
+<script>
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Fade-in animation on scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.3 };
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('appear');
+            observer.unobserve(entry.target);
+        });
+    }, appearOptions);
+    faders.forEach(fader => appearOnScroll.observe(fader));
+</script>
+
 </body>
 </html>
