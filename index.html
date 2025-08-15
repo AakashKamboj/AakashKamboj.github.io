@@ -1,119 +1,329 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akash Kamboj - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-</head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Akash Kamboj — Cloud • DevOps • ML</title>
+  <meta name="description" content="Cloud/DevOps + ML portfolio of Akash Kamboj. AWS, Kubernetes, Terraform, Jenkins, Docker, Python.">  <style>
+    :root{
+      --bg: #0b0f12;
+      --panel: rgba(255,255,255,0.04);
+      --accent: #00ff88;
+      --text: #e6f1ff;
+      --muted: #94a3b8;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.1);
+      --shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 0 0 1px var(--border);
+      --radius: 18px;
+      --radius-lg: 22px;
+      --pad: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 800px at 20% -10%, #0a2a22 0%, transparent 50%), var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      line-height:1.6;
+    }
+
+    /* Matrix Banner */
+    .banner-wrap{position:relative; overflow:hidden;}
+    #matrix{display:block; width:100%; height:34vh; background:black}
+    .banner-overlay{
+      position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px;
+      background: linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.35));
+    }
+    .title{font-size:clamp(28px, 4vw, 48px); font-weight:800; letter-spacing:.4px; text-shadow:0 4px 30px rgba(0,255,136,.25)}
+    .glitch{position:relative; display:inline-block}
+    .glitch:before, .glitch:after{content:attr(data-text); position:absolute; left:0; top:0; text-shadow: 2px 0 var(--accent); clip-path: inset(0 0 0 0); opacity:.5}
+    .glitch:after{ text-shadow: -2px 0 #21e6a9; mix-blend-mode:screen;}
+
+    .tagline{font-size:clamp(14px, 2.2vw, 18px); color:var(--muted); margin-top:6px}
+    .typing{color:var(--text)}
+
+    .cta{margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
+    .btn{
+      padding:10px 16px; border-radius:999px; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      color:var(--text); text-decoration:none; display:inline-flex; align-items:center; gap:8px; backdrop-filter: blur(6px);
+      box-shadow: var(--shadow); transition: transform .15s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover{ transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 12px 30px rgba(0,255,136,.18), inset 0 0 0 1px var(--accent)}
+
+    /* Page Content */
+    main{max-width:1150px; margin: 26px auto 80px; padding: 0 20px}
+    section{margin-top:30px}
+    .section-head{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px}
+    .h2{font-size:clamp(20px, 2.6vw, 28px); font-weight:800}
+    .hr{height:1px; flex:1; background:linear-gradient(90deg, var(--border), transparent)}
+
+    /* Skills */
+    .skills-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap:14px}
+    .skill{
+      background: var(--card); border:1px solid var(--border); border-radius: var(--radius); padding:14px; display:flex; align-items:center; gap:10px; box-shadow: var(--shadow);
+      transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .skill:hover{ transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 14px 32px rgba(0,255,136,.15), inset 0 0 0 1px var(--accent)}
+    .skill img{width:26px; height:26px; filter: drop-shadow(0 0 6px rgba(0,255,136,.35));}
+    .skill span{font-weight:600}
+
+    /* Projects */
+    .projects{display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px}
+    .card{
+      background: var(--card); border:1px solid var(--border); border-radius: var(--radius-lg); overflow:hidden; box-shadow: var(--shadow);
+      display:flex; flex-direction:column; transition: transform .18s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .card:hover{ transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 18px 42px rgba(0,255,136,.14), inset 0 0 0 1px var(--accent)}
+    .thumb{aspect-ratio: 16/9; background: linear-gradient(135deg, #02140f, #083c2f); border-bottom:1px solid var(--border); position:relative}
+    .thumb:after{content:""; position:absolute; inset:0; background: radial-gradient(600px 200px at 10% 0, rgba(0,255,136,.15), transparent)}
+    .content{padding:16px}
+    .tags{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0}
+    .tag{font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid var(--border); color:var(--muted)}
+    .card .actions{display:flex; gap:10px; margin-top:auto; padding:16px}
+
+    /* Certificates */
+    .certs{display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px}
+    .cert{background: var(--card); border:1px solid var(--border); border-radius: var(--radius); padding:16px; box-shadow: var(--shadow)}
+    .cert h4{margin:4px 0 8px}
+    .cert small{color:var(--muted)}
+
+    /* Stats Section */
+    .stats{display:grid; grid-template-columns:1fr; gap:10px}
+    .stats img{max-width:100%; border-radius:12px; border:1px solid var(--border)}
+
+    /* Footer */
+    footer{margin:46px 0 60px; text-align:center; color:var(--muted)}
+
+    /* Simple reveal on scroll */
+    .reveal{opacity:0; transform: translateY(12px); transition: all .6s ease}
+    .reveal.in{opacity:1; transform:none}
+
+    /* Utilities */
+    .muted{color:var(--muted)}
+  </style></head>
 <body>
-
-<header>
-    <nav>
-        <h1>Akash Kamboj</h1>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-</header>
-
-<!-- Hero -->
-<section id="home" class="hero fade-in">
-    <h2>Data & Cloud Enthusiast</h2>
-    <p>AWS | DevOps | Machine Learning | Data Analytics</p>
-    <a href="#contact" class="btn">Contact Me</a>
-</section>
-
-<!-- About -->
-<section id="about" class="glass fade-in">
-    <h2>About Me</h2>
-    <p>I am a Data and Cloud enthusiast with skills in Python, scikit-learn, and Power BI.
-        Proficient in AWS (EC2, S3, Lambda, RDS) and DevOps tools like Docker, Jenkins, Kubernetes, and Terraform.</p>
-</section>
-
-<!-- Skills -->
-<section id="skills" class="glass fade-in">
-    <h2>Skills</h2>
-    <ul>
-        <li>Python, SQL, Power BI, HTML, CSS, JavaScript</li>
-        <li>Machine Learning, Data Visualization, MongoDB</li>
-        <li>AWS Services, Docker, Jenkins, Kubernetes, Terraform</li>
-    </ul>
+  <!-- Banner with Matrix animation -->
+  <div class="banner-wrap">
+    <canvas id="matrix"></canvas>
+    <div class="banner-overlay">
+      <div class="title glitch" data-text="Akash Kamboj">Akash Kamboj</div>
+      <div class="tagline"><span class="typing" id="typing"></span></div>
+      <div class="cta">
+        <a class="btn" href="#resume" onclick="openResume()">📄 View Resume</a>
+        <a class="btn" href="#certificates">📜 Certificates</a>
+        <a class="btn" href="mailto:akashkamboj238@gmail.com">📬 Contact</a>
+        <a class="btn" href="https://www.linkedin.com/in/akash-kamboj-08223422a/" target="_blank" rel="noreferrer">🔗 LinkedIn</a>
+        <a class="btn" href="https://github.com/AakashKamboj" target="_blank" rel="noreferrer">💻 GitHub</a>
+      </div>
+    </div>
+  </div>  <main>
+    <!-- About -->
+    <section class="reveal">
+      <div class="section-head">
+        <div class="h2">About</div>
+        <div class="hr"></div>
+      </div>
+      <p class="muted" style="margin-top:-2px">Cloud & DevOps engineer with hands-on ML. I architect secure AWS environments, automate CI/CD, and ship data-driven apps using Python. Certified AWS Solutions Architect (Associate) & Cloud Practitioner.</p>
+    </section><!-- Skills -->
+<section id="skills" class="reveal">
+  <div class="section-head">
+    <div class="h2">Skills & Tools</div>
+    <div class="hr"></div>
+  </div>
+  <div class="skills-grid">
+    <!-- Programming & Data -->
+    <div class="skill"><img alt="Python" src="https://cdn.simpleicons.org/python"/><span>Python</span></div>
+    <div class="skill"><img alt="Pandas" src="https://cdn.simpleicons.org/pandas"/><span>Pandas</span></div>
+    <div class="skill"><img alt="Scikit-learn" src="https://cdn.simpleicons.org/scikitlearn"/><span>Scikit‑learn</span></div>
+    <div class="skill"><img alt="Power BI" src="https://cdn.simpleicons.org/powerbi"/><span>Power BI</span></div>
+    <div class="skill"><img alt="SQL" src="https://cdn.simpleicons.org/mysql"/><span>SQL</span></div>
+    <!-- DevOps -->
+    <div class="skill"><img alt="Docker" src="https://cdn.simpleicons.org/docker"/><span>Docker</span></div>
+    <div class="skill"><img alt="Kubernetes" src="https://cdn.simpleicons.org/kubernetes"/><span>Kubernetes</span></div>
+    <div class="skill"><img alt="Jenkins" src="https://cdn.simpleicons.org/jenkins"/><span>Jenkins</span></div>
+    <div class="skill"><img alt="GitHub Actions" src="https://cdn.simpleicons.org/githubactions"/><span>GitHub Actions</span></div>
+    <div class="skill"><img alt="Terraform" src="https://cdn.simpleicons.org/terraform"/><span>Terraform</span></div>
+    <div class="skill"><img alt="Ansible" src="https://cdn.simpleicons.org/ansible"/><span>Ansible</span></div>
+    <!-- Cloud -->
+    <div class="skill"><img alt="AWS" src="https://cdn.simpleicons.org/amazonaws"/><span>AWS</span></div>
+    <div class="skill"><img alt="EC2" src="https://cdn.simpleicons.org/amazonec2"/><span>EC2</span></div>
+    <div class="skill"><img alt="S3" src="https://cdn.simpleicons.org/amazons3"/><span>S3</span></div>
+    <div class="skill"><img alt="Lambda" src="https://cdn.simpleicons.org/awslambda"/><span>Lambda</span></div>
+    <div class="skill"><img alt="EKS" src="https://cdn.simpleicons.org/amazoneks"/><span>EKS</span></div>
+    <!-- DB/OS -->
+    <div class="skill"><img alt="MongoDB" src="https://cdn.simpleicons.org/mongodb"/><span>MongoDB</span></div>
+    <div class="skill"><img alt="Linux" src="https://cdn.simpleicons.org/linux"/><span>Linux</span></div>
+    <div class="skill"><img alt="Git" src="https://cdn.simpleicons.org/git"/><span>Git</span></div>
+  </div>
 </section>
 
 <!-- Projects -->
-<section id="projects" class="fade-in">
-    <h2>Projects</h2>
-    <div class="project-card">
-        <img src="https://via.placeholder.com/400x250" alt="HR Dashboard">
-        <h3>HR Dashboard in Power BI</h3>
-        <p>Designed an HR analytics dashboard tracking turnover, recruitment, diversity, and engagement.</p>
+<section id="projects" class="reveal">
+  <div class="section-head">
+    <div class="h2">Featured Projects</div>
+    <div class="hr"></div>
+  </div>
+  <div class="projects">
+    <!-- Wanderlust -->
+    <article class="card">
+      <div class="thumb" role="img" aria-label="Wanderlust AWS EKS"></div>
+      <div class="content">
+        <h3 style="margin:0 0 6px">Wanderlust — GitOps on AWS EKS</h3>
+        <p class="muted">Three‑tier app on EKS with <strong>ArgoCD</strong> GitOps. Infra via <strong>Terraform</strong>, CI/CD with <strong>Jenkins</strong>, monitoring by <strong>Prometheus + Grafana</strong>.</p>
+        <div class="tags">
+          <span class="tag">AWS</span><span class="tag">EKS</span><span class="tag">Terraform</span><span class="tag">Jenkins</span><span class="tag">ArgoCD</span>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn" href="https://github.com/AakashKamboj/Wanderlust-Mega-Project-" target="_blank" rel="noreferrer">🔗 GitHub</a>
+        <a class="btn" href="https://aakashkamboj.github.io" target="_blank" rel="noreferrer">🌐 Live</a>
+      </div>
+    </article>
+
+    <!-- Diamond Price Prediction -->
+    <article class="card">
+      <div class="thumb" role="img" aria-label="Diamond Price ML"></div>
+      <div class="content">
+        <h3 style="margin:0 0 6px">Diamond Price Prediction — ML</h3>
+        <p class="muted">End‑to‑end regression pipeline with <strong>Pandas</strong>, <strong>Scikit‑learn</strong>, Dockerized Flask app, deployed on <strong>AWS EC2</strong> via GitHub Actions.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Scikit‑learn</span><span class="tag">Docker</span><span class="tag">EC2</span>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn" href="https://github.com/AakashKamboj/DiamondPricePrediction" target="_blank" rel="noreferrer">🔗 GitHub</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Certificates -->
+<section id="certificates" class="reveal">
+  <div class="section-head">
+    <div class="h2">Certificates</div>
+    <div class="hr"></div>
+  </div>
+  <div class="certs">
+    <div class="cert">
+      <h4>AWS Solutions Architect – Associate</h4>
+      <small>Amazon Web Services</small>
+      <div style="margin-top:10px">
+        <a class="btn" target="_blank" rel="noreferrer" href="https://www.credly.com/badges/7a045496-85fa-46d6-ada0-81307543cd6c">View Certificate</a>
+      </div>
     </div>
-    <div class="project-card">
-        <img src="https://via.placeholder.com/400x250" alt="Diamond Price Prediction">
-        <h3>Diamond Price Prediction</h3>
-        <p>ML web app using Flask to predict diamond prices with multiple regression models.</p>
+    <div class="cert">
+      <h4>AWS Cloud Practitioner</h4>
+      <small>Amazon Web Services</small>
+      <div style="margin-top:10px">
+        <a class="btn" target="_blank" rel="noreferrer" href="https://www.credly.com/badges/58e68b19-9116-4603-b9b6-3a0dc1fb2d38">View Certificate</a>
+      </div>
     </div>
+    <div class="cert">
+      <h4>Data Science Masters</h4>
+      <small>Physics Wallah</small>
+      <div style="margin-top:10px">
+        <a class="btn" target="_blank" rel="noreferrer" href="#">View Certificate</a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Education -->
-<section id="education" class="glass fade-in">
-    <h2>Education</h2>
-    <p>B.Tech in Computer Science & Engineering - MIET Meerut (2021–2025) - CGPA: 6.7</p>
-    <p>Senior Secondary - Ved International School, Meerut (73%)</p>
+<!-- Resume -->
+<section id="resume" class="reveal">
+  <div class="section-head">
+    <div class="h2">Resume</div>
+    <div class="hr"></div>
+  </div>
+  <p class="muted">Download the latest resume PDF. Keep your file at <code>/assets/Akash_Kamboj_Resume.pdf</code> in this repo.</p>
+  <a class="btn" href="assets/Akash_Kamboj_Resume.pdf" target="_blank" rel="noreferrer">📄 Open Resume (PDF)</a>
 </section>
 
-<!-- Certifications -->
-<section id="certifications" class="glass fade-in">
-    <h2>Certifications</h2>
-    <p>AWS Academy Graduate - AWS Academy Cloud Foundations Badge</p>
-    <p>AWS Certified Cloud Practitioner </p>
-    <p>AWS Certified Solutions Architect Associate</p>  
-
+<!-- GitHub Stats -->
+<section id="stats" class="reveal">
+  <div class="section-head">
+    <div class="h2">GitHub Insights</div>
+    <div class="hr"></div>
+  </div>
+  <div class="stats">
+    <img alt="GitHub Stats" src="https://github-readme-stats.vercel.app/api?username=AakashKamboj&show_icons=true&theme=radical"/>
+    <img alt="GitHub Streak" src="https://github-readme-streak-stats.herokuapp.com/?user=AakashKamboj&theme=radical"/>
+    <img alt="Top Langs" src="https://github-readme-stats.vercel.app/api/top-langs/?username=AakashKamboj&layout=compact&theme=radical"/>
+  </div>
 </section>
 
-<!-- Contact -->
-<section id="contact" class="glass fade-in">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:akashkamboj238@gmail.com">akashkamboj238@gmail.com</a></p>
-    <p>Phone: <a href="tel:+918755410664">+91 8755410664</a></p>
-    <p>GitHub: <a href="https://github.com/aakashkamboj" target="_blank">aakashkamboj</a></p>
-</section>
+  </main>  <footer>
+    © <span id="year"></span> Akash Kamboj · Built with HTML • CSS • JS · Hosted on GitHub Pages
+  </footer>  <script>
+    // ===== Matrix Rain (banner) =====
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
 
-<footer>
-    <p>© 2025 Akash Kamboj | Portfolio</p>
-</footer>
+    function sizeCanvas(){
+      canvas.width = window.innerWidth;
+      canvas.height = Math.max(220, Math.floor(window.innerHeight * 0.34));
+    }
+    sizeCanvas();
 
-<script>
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
+    const letters = 'アカシャ0123456789@#$%^&*ABCDEFGHIJKLMNOPQRSTUVWXYZｱｶｼｬｶﾝﾎﾞｼﾞ';
+    const fontSize = 16;
+    let columns = Math.floor(canvas.width / fontSize);
+    let drops = new Array(columns).fill(1);
+
+    function draw(){
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00ff88';
+      ctx.font = fontSize + 'px monospace';
+      for(let i=0; i<drops.length; i++){
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+        if(drops[i]*fontSize > canvas.height && Math.random() > 0.975){ drops[i] = 0; }
+        drops[i]++;
+      }
+    }
+    let rain = setInterval(draw, 33);
+
+    window.addEventListener('resize', () => {
+      sizeCanvas();
+      columns = Math.floor(canvas.width / fontSize);
+      drops = new Array(columns).fill(1);
     });
 
-    // Fade-in animation on scroll
-    const faders = document.querySelectorAll('.fade-in');
-    const appearOptions = { threshold: 0.3 };
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('appear');
-            observer.unobserve(entry.target);
-        });
-    }, appearOptions);
-    faders.forEach(fader => appearOnScroll.observe(fader));
-</script>
+    // ===== Typing effect =====
+    const typingEl = document.getElementById('typing');
+    const phrases = [
+      'Cloud • DevOps • Machine Learning',
+      'AWS | Kubernetes | Terraform | Jenkins',
+      'Docker • GitHub Actions • Python',
+      'Scalable Infra. Automated Delivery.'
+    ];
+    let pi = 0, ci = 0, deleting = false;
+    function type(){
+      const p = phrases[pi];
+      typingEl.textContent = p.slice(0, ci) + (Math.random()>.5 ? '_' : '');
+      if(!deleting) {
+        if(ci < p.length){ ci++; }
+        else { deleting = true; setTimeout(type,900); return; }
+      } else {
+        if(ci>0){ ci--; }
+        else { deleting = false; pi = (pi+1) % phrases.length; }
+      }
+      setTimeout(type, deleting ? 40 : 60);
+    }
+    type();
 
-</body>
+    // ===== Open Resume helper =====
+    function openResume(){
+      window.open('assets/Akash_Kamboj_Resume.pdf', '_blank');
+    }
+
+    // ===== Reveal on scroll =====
+    const io = new IntersectionObserver((entries)=>{
+      for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }
+    }, { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script></body>
 </html>
